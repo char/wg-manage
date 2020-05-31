@@ -1,5 +1,5 @@
-from wireguard_hub import config
-from wireguard_hub.ip_assignment import gen_peer_ips
+from wg_manage import config
+from wg_manage.ip_assignment import gen_peer_ips
 
 
 def add_device(name, pub_key, shared_key=None):

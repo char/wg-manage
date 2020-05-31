@@ -1,7 +1,7 @@
-from wireguard_hub.config import read_config, write_config
+from wg_manage.config import read_config, write_config
 config = read_config()
 
-from wireguard_hub.devices import add_device, generate_peers_config
+from wg_manage.devices import add_device, generate_peers_config
 
 
 from flask import Flask, Response, request, jsonify

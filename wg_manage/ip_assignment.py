@@ -1,4 +1,4 @@
-from wireguard_hub import config
+from wg_manage import config
 
 from ipaddress import IPv4Network, IPv6Network
 v4_network = IPv4Network(config["prefix_v4"])

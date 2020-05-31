@@ -1,4 +1,4 @@
-# wireguard-hub
+# wg-manage
 
 A super simple WireGuard configuration management service. Bring your own front-end.
 
