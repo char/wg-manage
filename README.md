@@ -7,7 +7,8 @@ A super simple WireGuard configuration management service. Bring your own front-
 ```shell
 $ cp config.sample.json config.json
 $ $EDITOR config.json
-$ python3 ./run_dev.py # Start a local server
+$ pipenv install
+[pipenv] $ python3 ./run_dev.py # Start a local server
 ```
 
 ## Usage
