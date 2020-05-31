@@ -1,0 +1,6 @@
+{
+  "auth_token": "MY_AUTH_TOKEN",
+  "prefix_v4": "100.87.0.0/16",
+  "prefix_v6": "fd01:f6e1::/32",
+  "peers": []
+}
