@@ -22,6 +22,9 @@ def require_auth(route):
 @app.route("/add", methods=["POST"])
 def add():
   form = request.get_json()
+  if form is None:
+    form = request.form
+
   name = form.get("name")
   pk = form.get("pk")
   psk = form.get("psk")
