@@ -6,4 +6,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "gunicorn", "-bind", "0.0.0.0:80", "-w", "4" "wg_manage:app" ]
+CMD [ "gunicorn", "-bind", "0.0.0.0:80", "-w", "4", "wg_manage:app" ]
