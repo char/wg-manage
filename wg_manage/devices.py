@@ -22,3 +22,17 @@ def generate_peers_config(config):
     return "[Peer]\n" + "\n".join(f"{k} = {v}" for k, v in peer.items())
 
   return "\n\n".join(peer_config_stub(p) for p in config["peers"])
+
+
+def generate_client_config(config, peer):
+  return f"""
+[Interface]
+PrivateKey = ENTER_PRIVATE_KEY
+Address = {peer['AllowedIPs']}
+
+[Peer]
+PublicKey = {config['hub_public_key']}
+Endpoint = {config['hub_address']}
+AllowedIPs = {config['prefix_v4']}, {config['prefix_v6']}
+{'PresharedKey = ' + peer['PresharedKey'] if 'PresharedKey' in peer else ''}
+  """.strip()

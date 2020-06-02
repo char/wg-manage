@@ -1,11 +1,11 @@
 from wg_manage.config import read_config, write_config
-from wg_manage.devices import add_device, generate_peers_config
-
+from wg_manage.devices import add_device, generate_peers_config, generate_client_config
 
 from flask import Flask, Response, request, jsonify
 app = Flask(__name__)
 
 import functools
+
 
 def require_auth(route):
   @functools.wraps(route)
@@ -42,3 +42,13 @@ def add(config):
 @require_auth
 def peers(config):
   return Response(generate_peers_config(config), content_type="text/plain")
+
+
+@app.route("/peer/<peer_name>", methods=["GET"])
+@require_auth
+def serve_peer_config(peer_name, config):
+  for peer in config["peers"]:
+    if peer["# Name"] == peer_name:
+      return Response(generate_client_config(config, peer), content_type="text/plain")
+
+  return jsonify({ "error": "No matching peer found." }), 404
