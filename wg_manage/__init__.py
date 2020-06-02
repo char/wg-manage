@@ -5,9 +5,12 @@ from wg_manage.devices import add_device, generate_peers_config
 from flask import Flask, Response, request, jsonify
 app = Flask(__name__)
 
+import functools
 
 def require_auth(route):
+  @functools.wraps(route)
   def f(*a, **kw):
+    config = read_config()
     if request.headers.get("Authorization") != f"Bearer {config['auth_token']}":
       return jsonify({ "error": "Missing or invalid authorization token" }), 403
 
@@ -16,8 +19,8 @@ def require_auth(route):
   return f
 
 
-@require_auth
 @app.route("/add", methods=["POST"])
+@require_auth
 def add():
   form = request.get_json()
   if form is None:
@@ -37,8 +40,8 @@ def add():
   return res
 
 
-@require_auth
 @app.route("/peers")
+@require_auth
 def peers():
   config = read_config()
 
