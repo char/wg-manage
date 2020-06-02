@@ -11,7 +11,7 @@ def add_device(config, name, pub_key, shared_key=None):
   }
 
   if shared_key:
-    device["PreSharedKey"] = shared_key
+    device["PresharedKey"] = shared_key
 
   config["peers"].append(device)
   return device
