@@ -1,9 +1,8 @@
-from wg_manage import config
 from wg_manage.ip_assignment import gen_peer_ips
 
 
-def add_device(name, pub_key, shared_key=None):
-  ipv4_addr, v6_subnet = gen_peer_ips(len(config["peers"]))
+def add_device(config, name, pub_key, shared_key=None):
+  ipv4_addr, v6_subnet = gen_peer_ips(config, len(config["peers"]))
 
   device = {
     "# Name": name,
@@ -18,7 +17,7 @@ def add_device(name, pub_key, shared_key=None):
   return device
 
 
-def generate_peers_config():
+def generate_peers_config(config):
   def peer_config_stub(peer):
     return "[Peer]\n" + "\n".join(f"{k} = {v}" for k, v in peer.items())
 

@@ -1,11 +1,9 @@
-from wg_manage import config
-
 from ipaddress import IPv4Network, IPv6Network
-v4_network = IPv4Network(config["prefix_v4"])
-v6_network = IPv6Network(config["prefix_v6"])
 
+def gen_peer_ips(config, n):
+  v4_network = IPv4Network(config["prefix_v4"])
+  v6_network = IPv6Network(config["prefix_v6"])
 
-def gen_peer_ips(n):
   v4_host = None
   v6_subnet = None
 
